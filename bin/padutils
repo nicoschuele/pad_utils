@@ -2,4 +2,5 @@
 
 require_relative "../lib/pad_utils"
 
-PadUtils::main ARGV
+# PadUtils::main ARGV
+puts "Not doing anything"
