@@ -1,7 +1,18 @@
 module PadUtils
 
-  def self.convert_to_ruby_name(val)
-    ""
+  # Convert a string into a proper Ruby name.
+  # For example, 'app_name' will be converted to 'AppName' 
+  def self.convert_to_ruby_name(value)
+    if value.scan(/\_|\-/).size > 0
+      value.split(/\_|\-/).map(&:capitalize).join
+    else
+      value.slice(0,1).capitalize + value.slice(1..-1)
+    end
+  end
+  
+  # Convert a string to only alphanumeric and underscores
+  def self.sanitize(value)
+    value.tr('^A-Za-z0-9', '_')
   end
 
   # Replace text within a file.
