@@ -47,5 +47,22 @@ module PadUtils
     FileUtils.mkdir_p(dir_name)
   end
 
+  # Reads content of a file. Method created for consistency.
+  def self.get_file_content(filepath)
+    File.read(filepath)
+  end
+  
+  # Write content to a file. Create it if it doesn't exist.
+  def self.write_to_file(filepath, content)
+    File.open(filepath, 'w') { |f| f.write(content)}
+  end
+  
+  # Append content to the end of a file. Create it if it doesn't exist.
+  # It will write a newline character first. If you don't want that,
+  # set the new_line option to false.
+  def self.append_to_file(filepath, content, new_line = true)
+    content = "\n#{content}" if new_line
+    File.open(filepath, 'a') { |f| f.write("#{content}")}
+  end
 
 end
