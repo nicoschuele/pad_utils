@@ -13,6 +13,10 @@ module PadUtils
     PadUtils.log("Error in yes/no menu", e)
   end
 
-  
+  # Prompts user with a cli open question menu. Returns a string.
+  def self.question_menu(question)
+    STDOUT.print "#{question}: "
+    STDIN.gets.chomp.strip
+  end
 
 end
