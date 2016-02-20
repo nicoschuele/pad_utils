@@ -18,10 +18,10 @@ module PadUtils
   # Replace text within a file.
   # old_text can be a regex or a string
   def self.replace_in_file(file, old_text, new_text)
-    text_update = File.read(file)
+    text_update = PadUtils.get_file_content(file)
     text_update = text_update.gsub(old_text, new_text)
 
-    File.open(file, "w") { |f| f.write(text_update) }
+    PadUtils.write_to_file(file, text_update)
   rescue Exception => e
     PadUtils.log("Error replacing #{old_text} in #{file} with #{new_text}", e)
   end
@@ -64,6 +64,9 @@ module PadUtils
     else
       return new_content
     end
+
+  rescue Exception => e
+    PadUtils.log("Error inserting text", e)
   end
 
   # Insert text in a string or a file before the last occurence of a string.
@@ -94,6 +97,9 @@ module PadUtils
     else
       return content
     end
+
+  rescue Exception => e
+    PadUtils.log("Error inserting text", e)
   end
 
   # Insert text in a string or a file after the first occurence of a string.
@@ -134,6 +140,9 @@ module PadUtils
     else
       return new_content
     end
+
+  rescue Exception => e
+    PadUtils.log("Error inserting text", e)
   end
 
   # Insert text in a string or a file after the last occurence of a string.
@@ -164,6 +173,9 @@ module PadUtils
     else
       return content
     end
+
+  rescue Exception => e
+    PadUtils.log("Error inserting text", e)
   end
 
 end
