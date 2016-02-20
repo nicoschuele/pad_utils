@@ -26,20 +26,144 @@ module PadUtils
     PadUtils.log("Error replacing #{old_text} in #{file} with #{new_text}", e)
   end
 
-  def self.insert_before(original, tag, text)
-    # TODO: Implement
+  # Insert text in a string or a file before the first occurence of a string.
+  # original: the original string or filename
+  # tag: occurence of string to find
+  # text: string to insert
+  # is_file: say if original is a file (default: true) or a string
+  def self.insert_before_first(original: nil, tag: nil, text: nil, is_file: true)
+    # The new text will be consolidated in content
+    content = ""
+
+    # If coming from a file, read original into content
+    if is_file
+      content = PadUtils.get_file_content(original)
+    else
+      content = original
+    end
+
+    # Iterate line by line. If a position is found, insert the text
+    # and set found to true to prevent further insertions
+    found = false
+    new_content = ""
+    content.each_line do |line|
+      position = line.index(/#{tag}/)
+      if position && !found
+        new_content += "#{text}#{line}"
+        found = true
+      else
+        new_content += line
+      end
+    end
+
+    # If coming from a file, write result in same file. If not,
+    # simply return content
+    if is_file
+      PadUtils.write_to_file(original, new_content)
+      return new_content
+    else
+      return new_content
+    end
   end
 
-  def self.insert_before_in_file(file, tag, text)
-    # TODO: Implement
+  # Insert text in a string or a file before the last occurence of a string.
+  # original: the original string or filename
+  # tag: occurence of string to find
+  # text: string to insert
+  # is_file: say if original is a file (default: true) or a string
+  def self.insert_before_last(original: nil, tag: nil, text: nil, is_file: true)
+    # The new text will be consolidated in content
+    content = ""
+
+    # If coming from a file, read original into content
+    if is_file
+      content = PadUtils.get_file_content(original)
+    else
+      content = original
+    end
+
+    # Find the position of tag in the string array and insert the text
+    positions = content.enum_for(:scan, /#{tag}/).map { Regexp.last_match.begin(0) }
+    content[positions.last - 1] = "#{text}"
+
+    # If coming from a file, write result in same file. If not,
+    # simply return content
+    if is_file
+      PadUtils.write_to_file(original, content)
+      return content
+    else
+      return content
+    end
   end
 
-  def self.insert_after(original, tag, text)
-    # TODO: Implement
+  # Insert text in a string or a file after the first occurence of a string.
+  # original: the original string or filename
+  # tag: occurence of string to find
+  # text: string to insert
+  # is_file: say if original is a file (default: true) or a string
+  def self.insert_after_first(original: nil, tag: nil, text: nil, is_file: true)
+    # The new text will be consolidated in content
+    content = ""
+
+    # If coming from a file, read original into content
+    if is_file
+      content = PadUtils.get_file_content(original)
+    else
+      content = original
+    end
+
+    # Iterate line by line. If a position is found, insert the text
+    # and set found to true to prevent further insertions
+    found = false
+    new_content = ""
+    content.each_line do |line|
+      position = line.index(/#{tag}/)
+      if position && !found
+        new_content += "#{line}#{text}"
+        found = true
+      else
+        new_content += line
+      end
+    end
+
+    # If coming from a file, write result in same file. If not,
+    # simply return content
+    if is_file
+      PadUtils.write_to_file(original, new_content)
+      return new_content
+    else
+      return new_content
+    end
   end
 
-  def self.insert_after_in_file(file, tag, text)
-    # TODO: Implement
+  # Insert text in a string or a file after the last occurence of a string.
+  # original: the original string or filename
+  # tag: occurence of string to find
+  # text: string to insert
+  # is_file: say if original is a file (default: true) or a string
+  def self.insert_after_last(original: nil, tag: nil, text: nil, is_file: true)
+    # The new text will be consolidated in content
+    content = ""
+
+    # If coming from a file, read original into content
+    if is_file
+      content = PadUtils.get_file_content(original)
+    else
+      content = original
+    end
+
+    # Find the position of tag in the string array and insert the text
+    positions = content.enum_for(:scan, /#{tag}/).map { Regexp.last_match.begin(0) }
+    content[positions.last + tag.length] = "#{text}"
+
+    # If coming from a file, write result in same file. If not,
+    # simply return content
+    if is_file
+      PadUtils.write_to_file(original, content)
+      return content
+    else
+      return content
+    end
   end
 
 end
