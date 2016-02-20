@@ -66,7 +66,7 @@ module PadUtils
     end
 
   rescue Exception => e
-    PadUtils.log("Error inserting text", e)
+    PadUtils.log("Error in insert_before_first", e)
   end
 
   # Insert text in a string or a file before the last occurence of a string.
@@ -99,7 +99,7 @@ module PadUtils
     end
 
   rescue Exception => e
-    PadUtils.log("Error inserting text", e)
+    PadUtils.log("Error in insert_before_last", e)
   end
 
   # Insert text in a string or a file after the first occurence of a string.
@@ -142,7 +142,7 @@ module PadUtils
     end
 
   rescue Exception => e
-    PadUtils.log("Error inserting text", e)
+    PadUtils.log("Error in insert_after_first", e)
   end
 
   # Insert text in a string or a file after the last occurence of a string.
@@ -175,7 +175,7 @@ module PadUtils
     end
 
   rescue Exception => e
-    PadUtils.log("Error inserting text", e)
+    PadUtils.log("Error in insert_after_last", e)
   end
 
 end

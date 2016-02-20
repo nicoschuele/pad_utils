@@ -9,6 +9,7 @@ module PadUtils
     answer = STDIN.gets.chomp.strip.downcase
     answer = default if answer.length < 1
     answer == "y"
+    
   rescue Exception => e
     PadUtils.log("Error in yes/no menu", e)
   end
