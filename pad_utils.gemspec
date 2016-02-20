@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.2'
   spec.authors       = ["Nico Schuele"]
   spec.email         = ["help@padstone.io"]
-  spec.summary       = "Utilities for Padstone"
-  spec.description   = "PadUtils is a simple gem containing utilities for the Padstone app builder"
+  spec.summary       = "PadUtils is a simple gem containing common utilities and shortcuts"
+  spec.description   = "PadUtils is a simple gem containing common utilities and shortcuts. It is used in the [Padstone](http://padstone.io) app builder but can be embedded in any other Ruby project."
   spec.homepage      = "http://padstone.io"
   spec.license       = "Apache-2.0"
   spec.files         = Dir["{lib}/**/*", "LICENSE.txt", "Rakefile", "README.md"]
