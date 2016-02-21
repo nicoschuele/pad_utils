@@ -47,6 +47,12 @@ module PadUtils
     FileUtils.mkdir_p(dir_name)
   end
 
+  # Delete a directory and its content.
+  # Just a wrapper for consistency.
+  def self.delete_directory(dir_name)
+    FileUtils.rm_r(dir_name)
+  end
+
   # Reads content of a file. Method created for consistency.
   def self.get_file_content(filepath)
     File.read(filepath)
