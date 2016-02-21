@@ -184,6 +184,10 @@ Create a directory and subdirectories. **Won't complain if it already exists. Wo
 
 `PadUtils.create_directory(dir_name)`
 
+#### 8. Delete a directory and its content
+
+`PadUtils.delete_directory(dir_name)`
+
 #### 8. Read content of a file
 
 Returns a `string`.
