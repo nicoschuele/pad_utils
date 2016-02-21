@@ -188,17 +188,19 @@ Create a directory and subdirectories. **Won't complain if it already exists. Wo
 
 `PadUtils.delete_directory(dir_name)`
 
-#### 8. Read content of a file
+#### 9. Read content of a file
 
 Returns a `string`.
 
 `PadUtils.get_file_content(filepath)`
 
-#### 9. Write to a file
+#### 10. Write to a file
 
 Write content to a file. Create it if it doesn't exist. **Overwrites it if it already exists!**.
 
 `PadUtils.write_to_file(filepath, content)`
+
+#### 11. Append to a file
 
 Append content to the end of a file. Create it if it doesn't exist.
 
