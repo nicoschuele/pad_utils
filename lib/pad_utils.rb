@@ -4,10 +4,11 @@ require_relative "pad_utils/pad_text"
 require_relative "pad_utils/pad_time"
 require_relative "pad_utils/pad_logger"
 require_relative "pad_utils/pad_menu"
+require_relative "pad_utils/pad_json"
 
 module PadUtils
   # TODO: Add a cli coloring feature
-  
+
   def self.main(arg)
     puts
     puts "PadUtils v.#{PadUtils::VERSION}"

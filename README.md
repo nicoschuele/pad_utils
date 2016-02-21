@@ -17,8 +17,9 @@ Just `require 'pad_utils'` within your code to access the following methods.
 #### 1. Yes/No menu
 
 Prompt user with a cli yes/no menu. Returns `true` or `false`.
-`question`: the question to ask
-`default`: the default answer
+
+* `question`: the question to ask
+* `default`: the default answer
 
 `PadUtils.yes_no_menu(question: "Question?", default: "y")`
 
@@ -32,9 +33,9 @@ Prompt user with a cli open question menu. Returns a `string`.
 
 Prompt user with a multiple choice menu. Returns a `symbol`.
 
-`question`: the question to ask
-`choices`: hash of choices (e.g. `{b: "blue", r: "red"}`)
-`default`: symbol representing the default value. If none provided, last value in choices hash will be used.
+* `question`: the question to ask
+* `choices`: hash of choices (e.g. `{b: "blue", r: "red"}`)
+* `default`: symbol representing the default value. If none provided, last value in choices hash will be used.
 
 `PadUtils.choice_menu(question: "Question?", choices: {}, default: nil)`
 
@@ -63,10 +64,10 @@ Replace text within a file. `old_text` can either be a `string` or a `regex`. Do
 
 Insert text in a string or a file before the first occurence of a string. Returns a `string`. If `is_file` is `true`, overwrites `original` file.
 
-`original`: the original string or filename
-`tag`: occurence of string to find
-`text`: string to insert
-`is_file`: `true` if `original` is a filename (default), `false` if it's a `string`
+* `original`: the original string or filename
+* `tag`: occurence of string to find
+* `text`: string to insert
+* `is_file`: `true` if `original` is a filename (default), `false` if it's a `string`
 
 `PadUtils.insert_before_first(original: nil, tag: nil, text: nil, is_file: true)`
 
@@ -74,10 +75,10 @@ Insert text in a string or a file before the first occurence of a string. Return
 
 Insert text in a string or a file before the last occurence of a string. Returns a `string`. If `is_file` is `true`, overwrites `original` file.
 
-`original`: the original string or filename
-`tag`: occurence of string to find
-`text`: string to insert
-`is_file`: `true` if `original` is a filename (default), `false` if it's a `string`
+* `original`: the original string or filename
+* `tag`: occurence of string to find
+* `text`: string to insert
+* `is_file`: `true` if `original` is a filename (default), `false` if it's a `string`
 
 `PadUtils.insert_before_last(original: nil, tag: nil, text: nil, is_file: true)`
 
@@ -85,10 +86,10 @@ Insert text in a string or a file before the last occurence of a string. Returns
 
 Insert text in a string or a file after the first occurence of a string. Returns a `string`. If `is_file` is `true`, overwrites `original` file.
 
-`original`: the original string or filename
-`tag`: occurence of string to find
-`text`: string to insert
-`is_file`: `true` if `original` is a filename (default), `false` if it's a `string`
+* `original`: the original string or filename
+* `tag`: occurence of string to find
+* `text`: string to insert
+* `is_file`: `true` if `original` is a filename (default), `false` if it's a `string`
 
 `PadUtils.insert_after_first(original: nil, tag: nil, text: nil, is_file: true)`
 
@@ -96,12 +97,48 @@ Insert text in a string or a file after the first occurence of a string. Returns
 
 Insert text in a string or a file after the last occurence of a string. Returns a `string`. If `is_file` is `true`, overwrites `original` file.
 
-`original`: the original string or filename
-`tag`: occurence of string to find
-`text`: string to insert
-`is_file`: `true` if `original` is a filename (default), `false` if it's a `string`
+* `original`: the original string or filename
+* `tag`: occurence of string to find
+* `text`: string to insert
+* `is_file`: `true` if `original` is a filename (default), `false` if it's a `string`
 
 `PadUtils.insert_after_last(original: nil, tag: nil, text: nil, is_file: true)`
+
+### JSON and Hash
+
+Few methods to convert JSON to deep symbolized hash and back.
+
+#### 1. Symbolize all keys in a hash
+
+Convert all keys and sub-keys to symbols in a hash. Emulates the `deep_symbolize_keys` found in [Rails](http://apidock.com/rails/Hash/deep_symbolize_keys). Returns a `Hash`.
+
+`PadUtils.deep_symbolize_hash_keys(hash)`
+
+#### 2. Convert a JSON string to a symbolized hash
+
+Returns a `Hash`.
+
+`PadUtils.json_to_hash(json)`
+
+#### 3. Load a JSON file and convert it to a symbolized hash
+
+Returns a `Hash`.
+
+`PadUtils.json_file_to_hash(json_filename)`
+
+#### 4. Convert a hash to JSON
+
+*Alias method on `to_json` for consistency.*
+
+Returns a `string`.
+
+`PadUtils.hash_to_json(hash)`
+
+#### 5. Write a hash to a JSON file
+
+Returns the file content as a `string`.
+
+`PadUtils..hash_to_json_file(filename, hash)`
 
 ### Work with files
 
@@ -170,8 +207,8 @@ set the `new_line` option to `false`**.
 
 By default, logs will go to `~/pad_logs/logs.txt`.
 
-Change default path: `PadUtils.log_path = "/new/path/to/logs"`
-Change default file name: `PadUtils.log_file = "my_logs.txt"`
+* Change default path: `PadUtils.log_path = "/new/path/to/logs"`
+* Change default file name: `PadUtils.log_file = "my_logs.txt"`
 
 To log a message, you call `log` and pass it a `message` string. Optionally, you can also pass an `Exception` object in the parameters:
 
@@ -206,6 +243,10 @@ Returns a `Time` object from a readable timestamp `string` with format `YYYY-MM-
 ## Contribute
 
 [Get in touch](https://twitter.com/nicoschuele) before submitting a pull request, I don't want to waste your time by rejecting it!
+
+## Testing
+
+The test suite for PadUtils is currently outside of the gem itself. I may add it if I have time.
 
 ## License
 
