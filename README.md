@@ -2,17 +2,21 @@
 
 PadUtils is a simple gem containing common utilities and shortcuts. It is used in the [Padstone](http://padstone.io) app builder but can be embedded in any other Ruby project.
 
+
 ## Installation
 
 It's a Ruby gem. Install it like any other gem!
 
 `gem install pad_utils`
 
+
 ## Usage
 
 Just `require 'pad_utils'` within your code to access the following methods.
 
+
 ### Build CLI menus
+
 
 #### 1. Yes/No menu
 
@@ -23,11 +27,13 @@ Prompt user with a cli yes/no menu. Returns `true` or `false`.
 
 `PadUtils.yes_no_menu(question: "Question?", default: "y")`
 
+
 #### 2. Open question menu
 
 Prompt user with a cli open question menu. Returns a `string`.
 
 `PadUtils.question_menu(question)`
+
 
 #### 3. Multiple choice menu
 
@@ -42,25 +48,36 @@ Prompt user with a multiple choice menu. Returns a `symbol`.
 
 ### Work with text
 
+
 #### 1. Convert a string to a Rubified name
 
 Convert a string into a proper "rubified" name. For example, 'app_name' will be converted to 'AppName'. Returns a `string`.
 
 `PadUtils.convert_to_ruby_name(value)`
 
-#### 2. Sanitize a string
+
+#### 2. Convert CamelCase to camel_case (underscores)
+
+Convert a `CamelCase` word to an underscored one, e.g. `camel_case`. Taken from the Rails [Inflector](http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-underscore) class. Returns a `string`.
+
+`PadUtils.underscore(val)`
+
+
+#### 3. Sanitize a string
 
 Sanitize a string by replacing special characters (including spaces) with underscores. Returns a `string`.
 
 `PadUtils.sanitize(value)`
 
-#### 3. Replace a string in a file
+
+#### 4. Replace a string in a file
 
 Replace text within a file. `old_text` can either be a `string` or a `regex`. Doesn't return anything, overwrites `file`.
 
 `PadUtils.replace_in_file(file, old_text, new_text)`
 
-#### 4. Insert text before first occurence
+
+#### 5. Insert text before first occurence
 
 Insert text in a string or a file before the first occurence of a string. Returns a `string`. If `is_file` is `true`, overwrites `original` file.
 
@@ -71,7 +88,8 @@ Insert text in a string or a file before the first occurence of a string. Return
 
 `PadUtils.insert_before_first(original: nil, tag: nil, text: nil, is_file: true)`
 
-#### 5. Insert text before last occurence
+
+#### 6. Insert text before last occurence
 
 Insert text in a string or a file before the last occurence of a string. Returns a `string`. If `is_file` is `true`, overwrites `original` file.
 
@@ -82,7 +100,8 @@ Insert text in a string or a file before the last occurence of a string. Returns
 
 `PadUtils.insert_before_last(original: nil, tag: nil, text: nil, is_file: true)`
 
-#### 6. Insert text after first occurence
+
+#### 7. Insert text after first occurence
 
 Insert text in a string or a file after the first occurence of a string. Returns a `string`. If `is_file` is `true`, overwrites `original` file.
 
@@ -93,7 +112,8 @@ Insert text in a string or a file after the first occurence of a string. Returns
 
 `PadUtils.insert_after_first(original: nil, tag: nil, text: nil, is_file: true)`
 
-#### 7. Insert text after last occurence
+
+#### 8. Insert text after last occurence
 
 Insert text in a string or a file after the last occurence of a string. Returns a `string`. If `is_file` is `true`, overwrites `original` file.
 
@@ -104,9 +124,11 @@ Insert text in a string or a file after the last occurence of a string. Returns 
 
 `PadUtils.insert_after_last(original: nil, tag: nil, text: nil, is_file: true)`
 
+
 ### JSON and Hash
 
 Few methods to convert JSON to deep symbolized hash and back.
+
 
 #### 1. Symbolize all keys in a hash
 
@@ -114,17 +136,20 @@ Convert all keys and sub-keys to symbols in a hash. Emulates the `deep_symbolize
 
 `PadUtils.deep_symbolize_hash_keys(hash)`
 
+
 #### 2. Convert a JSON string to a symbolized hash
 
 Returns a `Hash`.
 
 `PadUtils.json_to_hash(json)`
 
+
 #### 3. Load a JSON file and convert it to a symbolized hash
 
 Returns a `Hash`.
 
 `PadUtils.json_file_to_hash(json_filename)`
+
 
 #### 4. Convert a hash to JSON
 
@@ -134,15 +159,18 @@ Returns a `string`.
 
 `PadUtils.hash_to_json(hash)`
 
+
 #### 5. Write a hash to a JSON file
 
 Returns the file content as a `string`.
 
 `PadUtils..hash_to_json_file(filename, hash)`
 
+
 ### Work with files
 
 Mostly, these are convenience methods aliasing existing Ruby methods. Implemented for consistency.
+
 
 #### 1. Delete a file
 
@@ -150,11 +178,13 @@ Delete a file. If not found, doesn't raise any error.
 
 `delete_file(file_path)`
 
+
 #### 2. Does a file exist?
 
 Returns `true` or `false`.
 
 `PadUtils.file_exist?(file_path)`
+
 
 #### 3. Copy a file
 
@@ -162,15 +192,18 @@ Returns `true` or `false`.
 
 `PadUtils.copy_file(file_path, dest_dir)`
 
+
 #### 4. Move a file
 
 **Will not throw an error if original file doesn't exist!**
 
 `PadUtils.move_file(file_path, dest_file)`
 
+
 #### 5. Copy multiple files
 
 `PadUtils.copy_files(files_array, dest_dir)`
+
 
 #### 6. Copy all files
 
@@ -178,15 +211,18 @@ Copy all files from a directory to another. *Will create destination if it doesn
 
 `PadUtils.copy_all_files(source_dir, dest_dir)`
 
+
 #### 7. Create a directory
 
 Create a directory and subdirectories. **Won't complain if it already exists. Won't override content**.
 
 `PadUtils.create_directory(dir_name)`
 
+
 #### 8. Delete a directory and its content
 
 `PadUtils.delete_directory(dir_name)`
+
 
 #### 9. Read content of a file
 
@@ -194,11 +230,13 @@ Returns a `string`.
 
 `PadUtils.get_file_content(filepath)`
 
+
 #### 10. Write to a file
 
 Write content to a file. Create it if it doesn't exist. **Overwrites it if it already exists!**.
 
 `PadUtils.write_to_file(filepath, content)`
+
 
 #### 11. Append to a file
 
@@ -208,6 +246,7 @@ Append content to the end of a file. Create it if it doesn't exist.
 set the `new_line` option to `false`**.
 
 `PadUtils.append_to_file(filepath, content, new_line = true)`
+
 
 ### Logging
 
@@ -220,7 +259,9 @@ To log a message, you call `log` and pass it a `message` string. Optionally, you
 
 `PadUtils.log(message, e = nil)`
 
+
 ### Some time methods
+
 
 #### 1. Time to string timestamp
 
@@ -228,11 +269,13 @@ Returns a `string` timestamp with the format `YYYYMMDDHHmmss` from a `Time` obje
 
 `PadUtils.time_to_stamp(val)`
 
+
 #### 2. String to time
 
 Returns a `Time` object from a timestamp with the format `YYYYMMDDHHmmss`
 
 `PadUtils.stamp_to_time(val)`
+
 
 #### 3. Time to readable string
 
@@ -240,19 +283,23 @@ Returns a `string` readable timestamp with format `YYYY-MM-DD HH:mm:ss` from a `
 
 `PadUtils.time_to_readable_stamp(val)`
 
+
 #### 4. Readable timestamp to time
 
 Returns a `Time` object from a readable timestamp `string` with format `YYYY-MM-DD HH:mm:ss`
 
 `PadUtils.readable_stamp_to_time(val)`
 
+
 ## Contribute
 
 [Get in touch](https://twitter.com/nicoschuele) before submitting a pull request, I don't want to waste your time by rejecting it!
 
+
 ## Testing
 
 The test suite for PadUtils is currently outside of the gem itself. I may add it if I have time.
+
 
 ## License
 
