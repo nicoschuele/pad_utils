@@ -13,12 +13,13 @@ module PadUtils
   # Convert a CamelCase word to an underscored one, e.g. camel_case
   # Taken from the Rails Inflector class.
   def self.underscore(val)
-    val.gsub!(/::/, '/')
-    val.gsub!(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
-    val.gsub!(/([a-z\d])([A-Z])/,'\1_\2')
-    val.tr!("-", "_")
-    val.downcase!
-    val
+    word = val.dup
+    word.gsub!(/::/, '/')
+    word.gsub!(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
+    word.gsub!(/([a-z\d])([A-Z])/,'\1_\2')
+    word.tr!("-", "_")
+    word.downcase!
+    word
   end
 
   # Convert a string to only alphanumeric and underscores
