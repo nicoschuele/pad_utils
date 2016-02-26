@@ -138,7 +138,7 @@ module PadUtils
   #
   # Will log errors using {PadUtils.log PadUtils.log}.
   #
-  # @param file_path [String] the file path and name
+  # @param filepath [String] the file path and name
   # @param content [String] the content to append
   # @param new_line [Boolean] prepends a newline character
   # @return [Void] nothing

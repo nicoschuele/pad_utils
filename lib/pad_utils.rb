@@ -6,6 +6,11 @@ require_relative "pad_utils/pad_logger"
 require_relative "pad_utils/pad_menu"
 require_relative "pad_utils/pad_json"
 
+# Main namespace for PadUtils.
+#
+# Each method is implemented as a module method. Prefix them with PadUtils to call them.
+# @example
+#   PadUtils.some_method(param)
 module PadUtils
   # TODO: Add a cli coloring feature
 
