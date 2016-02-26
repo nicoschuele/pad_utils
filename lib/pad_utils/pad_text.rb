@@ -1,8 +1,38 @@
 module PadUtils
 
-  # Convert a string into a proper Ruby name.
-  # For example, 'app_name' will be converted to 'AppName'
+  # Converts a string to a Rubified name.
+  #
+  # @deprecated Use {PadUtils.camel_case PadUtils.camel_case} instead as it will
+  #   properly sanitize the string as well.
+  #
+  # @param value [String] the string to rubify
+  # @return [String] the rubified string
+  # @example
+  #   s = "hello_you"
+  #   PadUtils.convert_to_ruby_name(s) # => 'HelloYou'
   def self.convert_to_ruby_name(value)
+    if value.scan(/\_|\-/).size > 0
+      value.split(/\_|\-/).map(&:capitalize).join
+    else
+      value.slice(0,1).capitalize + value.slice(1..-1)
+    end
+  end
+
+  # Converts a string to a CamelCase.
+  #
+  # @note The string will first be sanitized using {PadUtils.sanitize PadUtils.sanitize}.
+  #
+  # @param value [String] the string to CamelCase
+  # @return [String] the CamelCased string
+  # @example
+  #   s = "hello_you"
+  #   s2 = "hello you"
+  #   s3 = "hello   $you#"
+  #   PadUtils.convert_to_ruby_name(s) # => 'HelloYou'
+  #   PadUtils.convert_to_ruby_name(s2) # => 'HelloYou'
+  #   PadUtils.convert_to_ruby_name(s3) # => 'HelloYou'
+  def self.camel_case(value)
+    value = self.sanitize(value)
     if value.scan(/\_|\-/).size > 0
       value.split(/\_|\-/).map(&:capitalize).join
     else
