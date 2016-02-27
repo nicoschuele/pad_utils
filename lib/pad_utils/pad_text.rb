@@ -90,6 +90,9 @@ module PadUtils
     PadUtils.log("Error replacing #{old_text} in #{file} with #{new_text}", e)
   end
 
+  # TODO: A method to get the value of an option. E.g. get :foo from Config.Bar = :foo inside a file.
+  # TODO: A method to set the value of an option in a file. Change the value if it exists, create it if it doesn't.
+
   # Inserts text before the first occurence of a string.
   #
   # Can be used on a string or on a file.
