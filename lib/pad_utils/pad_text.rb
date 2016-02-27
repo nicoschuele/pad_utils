@@ -90,8 +90,6 @@ module PadUtils
     PadUtils.log("Error replacing #{old_text} in #{file} with #{new_text}", e)
   end
 
-  # TODO: A method to set the value of an option in a file. Change the value if it exists, create it if it doesn't.
-
   # Gets a value from a Ruby config file.
   #
   # *This method is some kind of UFO but it is heavily used in Padstone.
@@ -116,6 +114,10 @@ module PadUtils
     nil
   rescue Exception => e
     PadUtils.log("Error in get_config_value", e)
+  end
+
+  def self.set_config_value(key, value, file)
+    # TODO: implement
   end
 
   # Replaces a line in a file containing a specific value.
