@@ -40,8 +40,15 @@ module PadUtils
     end
   end
 
-  # Convert a CamelCase word to an underscored one, e.g. camel_case
-  # Taken from the Rails Inflector class.
+  # Converts a CamelCase string to an underscore string.
+  #
+  # Taken from the Rails {http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-underscore Inflector}
+  # class.
+  #
+  # @param val [String] the CamelCase string to underscore
+  # @return [String] the under_score string
+  # @example
+  #   PadUtils.underscore("CamelCase") # => camel_case
   def self.underscore(val)
     word = val.dup
     word.gsub!(/::/, '/')
@@ -52,13 +59,28 @@ module PadUtils
     word
   end
 
-  # Convert a string to only alphanumeric and underscores
+  # Sanitizes a string.
+  #
+  # Will only allow alphanumeric characters and underscores.
+  #
+  # @param value [String] the string to sanitize
+  # @return [String] the sanitized string
+  # @example
+  #   PadUtils.sanitize("Abc Def *34*#yXz") # => 'Abc_Def__34__yXz'
   def self.sanitize(value)
     value.tr('^A-Za-z0-9', '_')
   end
 
-  # Replace text within a file.
-  # old_text can be a regex or a string
+  # Replaces text in a file.
+  #
+  # Will log errors using {PadUtils.log PadUtils.log}.
+  #
+  # @param file [String] the file path and name
+  # @param old_text [String, Regexp] the text to find as a string or regex
+  # @param new_text [String] the new text
+  # @return [Void] nothing
+  # @example
+  #   PadUtils.replace_in_file("example.txt", /some_text/, "new text")
   def self.replace_in_file(file, old_text, new_text)
     text_update = PadUtils.get_file_content(file)
     text_update = text_update.gsub(old_text, new_text)
@@ -68,11 +90,19 @@ module PadUtils
     PadUtils.log("Error replacing #{old_text} in #{file} with #{new_text}", e)
   end
 
-  # Insert text in a string or a file before the first occurence of a string.
-  # original: the original string or filename
-  # tag: occurence of string to find
-  # text: string to insert
-  # is_file: say if original is a file (default: true) or a string
+  # Inserts text before the first occurence of a string.
+  #
+  # Can be used on a string or on a file.
+  #
+  # Will log errors using {PadUtils.log PadUtils.log}.
+  #
+  # @param original [String] the original file path and name *or* the original string
+  # @param tag [String] the string to find
+  # @param text [String] the string to insert
+  # @param is_file [Boolean] `true` if `original` is a file, `false` if it is a string
+  # @return [String] the new content
+  # @example
+  #   PadUtils.insert_before_first(original: "file.txt", tag: "end", text: "# hello!")
   def self.insert_before_first(original: nil, tag: nil, text: nil, is_file: true)
     # The new text will be consolidated in content
     content = ""
@@ -111,11 +141,19 @@ module PadUtils
     PadUtils.log("Error in insert_before_first", e)
   end
 
-  # Insert text in a string or a file before the last occurence of a string.
-  # original: the original string or filename
-  # tag: occurence of string to find
-  # text: string to insert
-  # is_file: say if original is a file (default: true) or a string
+  # Inserts text before the last occurence of a string.
+  #
+  # Can be used on a string or on a file.
+  #
+  # Will log errors using {PadUtils.log PadUtils.log}.
+  #
+  # @param original [String] the original file path and name *or* the original string
+  # @param tag [String] the string to find
+  # @param text [String] the string to insert
+  # @param is_file [Boolean] `true` if `original` is a file, `false` if it is a string
+  # @return [String] the new content
+  # @example
+  #   PadUtils.insert_before_last(original: "file.txt", tag: "end", text: "# hello!")
   def self.insert_before_last(original: nil, tag: nil, text: nil, is_file: true)
     # The new text will be consolidated in content
     content = ""
@@ -144,11 +182,19 @@ module PadUtils
     PadUtils.log("Error in insert_before_last", e)
   end
 
-  # Insert text in a string or a file after the first occurence of a string.
-  # original: the original string or filename
-  # tag: occurence of string to find
-  # text: string to insert
-  # is_file: say if original is a file (default: true) or a string
+  # Inserts text after the first occurence of a string.
+  #
+  # Can be used on a string or on a file.
+  #
+  # Will log errors using {PadUtils.log PadUtils.log}.
+  #
+  # @param original [String] the original file path and name *or* the original string
+  # @param tag [String] the string to find
+  # @param text [String] the string to insert
+  # @param is_file [Boolean] `true` if `original` is a file, `false` if it is a string
+  # @return [String] the new content
+  # @example
+  #   PadUtils.insert_after_first(original: "file.txt", tag: "end", text: "# hello!")
   def self.insert_after_first(original: nil, tag: nil, text: nil, is_file: true)
     # The new text will be consolidated in content
     content = ""
@@ -187,11 +233,19 @@ module PadUtils
     PadUtils.log("Error in insert_after_first", e)
   end
 
-  # Insert text in a string or a file after the last occurence of a string.
-  # original: the original string or filename
-  # tag: occurence of string to find
-  # text: string to insert
-  # is_file: say if original is a file (default: true) or a string
+  # Inserts text after the last occurence of a string.
+  #
+  # Can be used on a string or on a file.
+  #
+  # Will log errors using {PadUtils.log PadUtils.log}.
+  #
+  # @param original [String] the original file path and name *or* the original string
+  # @param tag [String] the string to find
+  # @param text [String] the string to insert
+  # @param is_file [Boolean] `true` if `original` is a file, `false` if it is a string
+  # @return [String] the new content
+  # @example
+  #   PadUtils.insert_after_last(original: "file.txt", tag: "end", text: "# hello!")
   def self.insert_after_last(original: nil, tag: nil, text: nil, is_file: true)
     # The new text will be consolidated in content
     content = ""
