@@ -93,6 +93,31 @@ module PadUtils
   # TODO: A method to get the value of an option. E.g. get :foo from Config.Bar = :foo inside a file.
   # TODO: A method to set the value of an option in a file. Change the value if it exists, create it if it doesn't.
 
+  # Replaces a line in a file containing a specific value.
+  #
+  # Will log errors using {PadUtils.log PadUtils.log}.
+  #
+  # @param value [String] the value to search for in a line
+  # @param in_file [String] the file path and name where to search
+  # @param new_value [String] the value replacing the line
+  # @return [Void] nothing
+  # @example
+  #   PadUtils.replace_line_containing("Config.port", in_file: "config.rb", new_value: "Config.port = 232")
+  def self.replace_line_containing(value, in_file: nil, new_value: nil)
+    content = PadUtils.get_file_content(in_file)
+    new_content = ""
+    content.each_line do |line|
+      if line.include? value
+        new_content << "#{new_value}\n"
+      else
+        new_content << line
+      end
+    end
+    PadUtils.write_to_file(in_file, new_content)
+  rescue Exception => e
+    PadUtils.log("Error in replace_line_containing", e)
+  end
+
   # Inserts text before the first occurence of a string.
   #
   # Can be used on a string or on a file.
