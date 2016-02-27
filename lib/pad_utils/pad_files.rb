@@ -85,7 +85,10 @@ module PadUtils
   # @example
   #   PadUtils.create_directory("path/to/dir")
   def self.create_directory(dir_name)
-    FileUtils.mkdir_p(dir_name)
+    dirname = File.dirname(dir_name)
+    unless File.directory?(dirname)
+      FileUtils.mkdir_p(dirname)
+    end
   end
 
   # Deletes a directory and its content
@@ -125,6 +128,7 @@ module PadUtils
   # @example
   #   PadUtils.write_to_file("path/to/file", "Hello\nThis is a test")
   def self.write_to_file(filepath, content)
+    self.create_directory(filepath)
     File.open(filepath, 'w') { |f| f.write(content)}
   rescue Exception => e
     PadUtils.log("Error in write_to_file", e)
@@ -145,6 +149,7 @@ module PadUtils
   # @example
   #   PadUtils.append_to_file("path/to/file.txt", "Append this!", false)
   def self.append_to_file(filepath, content, new_line = true)
+    self.create_directory(filepath)
     content = "\n#{content}" if new_line
     File.open(filepath, 'a') { |f| f.write("#{content}")}
   rescue Exception => e
