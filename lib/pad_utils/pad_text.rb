@@ -93,7 +93,19 @@ module PadUtils
   # TODO: A method to set the value of an option in a file. Change the value if it exists, create it if it doesn't.
 
   # Gets a value from a Ruby config file.
-  # TODO: Document with YARD  
+  #
+  # *This method is some kind of UFO but it is heavily used in Padstone.
+  #   It is made to retrieve the value inside a Rails config file or initializer
+  #   such as getting the value of `config.eager_load` in `production.rb`.
+  #   Everything gets returned as a string or as nil if not found.*
+  #
+  # Will log errors using {PadUtils.log PadUtils.log}.
+  #
+  # @param key [String] the config key to look for
+  # @param file [String] the file path and name containing the key
+  # @return [String, nil] the value returned as a string or nil
+  # @example
+  #   PadUtils.get_config_value("config.eager_load", "production.rb") # => 'true'
   def self.get_config_value(key, file)
     content = PadUtils.get_file_content(file)
     content.each_line do |line|
@@ -102,6 +114,8 @@ module PadUtils
       end
     end
     nil
+  rescue Exception => e
+    PadUtils.log("Error in get_config_value", e)
   end
 
   # Replaces a line in a file containing a specific value.
