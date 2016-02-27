@@ -5,6 +5,7 @@ require_relative "pad_utils/pad_time"
 require_relative "pad_utils/pad_logger"
 require_relative "pad_utils/pad_menu"
 require_relative "pad_utils/pad_json"
+require_relative "pad_utils/pad_color"
 
 # Main namespace for PadUtils.
 #
@@ -12,7 +13,6 @@ require_relative "pad_utils/pad_json"
 # @example
 #   PadUtils.some_method(param)
 module PadUtils
-  # TODO: Add a cli coloring feature
 
   def self.main(arg)
     puts
