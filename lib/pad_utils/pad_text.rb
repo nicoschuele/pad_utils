@@ -116,8 +116,61 @@ module PadUtils
     PadUtils.log("Error in get_config_value", e)
   end
 
-  def self.set_config_value(key, value, file)
-    # TODO: implement
+  # Sets a value in a Ruby config file.
+  #
+  # *This is another method typically used by Padstone to write
+  #   new config values in Rails config files such as `production.rb` or
+  #   overwrite existing ones.*
+  #
+  # Will log errors using {PadUtils.log PadUtils.log}.
+  #
+  # @param key [String] the config key to find (or create)
+  # @param value [String] the value to set
+  # @param file [String] the file path and name of the file to overwrite
+  # @param comment [String] the optional comment to add before the key
+  # @return [Void] nothing
+  # @example
+  #   key = "config.assets.digest"
+  #   value = "false"
+  #   file = "production.rb"
+  #   PadUtils.set_config_value(key, value, file, "Overwritten with PadUtils")
+  def self.set_config_value(key, value, file, comment = nil)
+    # read the config file
+    content = PadUtils.get_file_content(file)
+
+    # set some vars
+    found = false
+    new_content = ""
+
+    # for each line in the file, check if one contains the key.
+    # If the key is found, get its position so we can indent the
+    # config line properly.
+    content.each_line do |line|
+      position = line.index(key)
+      if position != nil
+        new_line = ""
+        (0..position - 1).each do |p|
+          new_line << " "
+        end
+        if comment != nil
+          new_content << "#{new_line}# #{comment}\n"
+        end
+        new_content << "#{new_line}#{key} = #{value}\n"
+        found = true
+      else
+        new_content << line
+      end
+    end
+
+    # If the config key was not found, we'll insert it before the last end,
+    # indented with two spaces
+    if !found
+      PadUtils.insert_before_last(original: file, tag: 'end', text: "\n\n  # #{comment == nil ? key : comment}\n  #{key} = #{value}\n")
+    else
+      PadUtils.write_to_file(file, new_content)
+    end
+  rescue Exception => e
+    PadUtils.log("Error in set_config_value", e)
   end
 
   # Replaces a line in a file containing a specific value.
