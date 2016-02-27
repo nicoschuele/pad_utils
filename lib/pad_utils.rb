@@ -14,6 +14,7 @@ require_relative "pad_utils/pad_color"
 #   PadUtils.some_method(param)
 module PadUtils
 
+  # Entry point for the executable. Not really useful.
   def self.main(arg)
     puts
     puts "PadUtils v.#{PadUtils::VERSION}"
