@@ -45,7 +45,7 @@ module PadUtils
   #   PadUtils.choice_menu(question: "Which color?", choices: options, default: :b)
   def self.choice_menu(question: "Question?", choices: {}, default: nil)
     STDOUT.puts
-    STDOUT.puts "- #{question}"
+    PadUtils.puts_c "- #{question}", :green
     default ||= choices.keys.last
     default = default.to_sym
 
