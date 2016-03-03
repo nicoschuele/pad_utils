@@ -73,7 +73,7 @@ module PadUtils
   # @example
   #   PadUtils.copy_all_files("path/to/source", "path/to/destination")
   def self.copy_all_files(orig_dir, dest_dir)
-    FileUtils.copy_entry(orig_dir, dest_dir)
+    FileUtils.cp_r(orig_dir, dest_dir)
   end
 
   # Creates a directory.
