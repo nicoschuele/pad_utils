@@ -13,4 +13,19 @@ module PadUtils
     class_name
   end
 
+  # Create a class from a filename.
+  #
+  # **Don't forget to `require_relative` the file**
+  #
+  # @param file [String] the file path and name. Must be a Ruby (`.rb`) file.
+  # @return [Object] the class generated from the file
+  # @example
+  #   require_relative 'somepath/foo_bar'
+  #   foobar = PadUtils.filename_to_class("somepath/foo_bar.rb")
+  #   f = foobar.new
+  def self.filename_to_class(file)
+    class_name = PadUtils.filename_to_classname(file)
+    Object.const_get(class_name)
+  end
+
 end
