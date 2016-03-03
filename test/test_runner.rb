@@ -2,7 +2,6 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'pad_utils'
-require_relative 'helper'
 
 start_time = Time.now
 number_of_tests = 0
@@ -15,7 +14,7 @@ PadUtils.puts_c "Running tests...", :blue
 Dir["units/*_test.rb"].each do |file|
   require_relative file
 
-  class_name = get_class_name(file)
+  class_name = PadUtils.filename_to_class(file)
 
   clazz = Object.const_get(class_name)
   c = clazz.new(class_name)
@@ -29,8 +28,9 @@ Dir["units/*_test.rb"].each do |file|
 end
 
 end_time = Time.now
+interval = PadUtils.interval start_time, end_time, :seconds
 
-PadUtils.puts_c "Finished running #{number_of_tests} tests in #{time_diff_sec start_time, end_time} seconds", :blue
+PadUtils.puts_c "Finished running #{number_of_tests} tests in #{interval} seconds", :blue
 if errors_list.length > 0
   PadUtils.puts_c "--> Failed (#{errors_list.length}): ", :error
   errors_list.each do |err|
