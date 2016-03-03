@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+# russian dolls issue: PadUtils is actually used in the test_runner itself.
+# PadUtils is used to write tests for PadUtils... circular reference. 
+# gem "pad_utils", ">= 1.5"
+
+gem 'pad_utils', path: "../"

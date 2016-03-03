@@ -1,0 +1,25 @@
+A quick explanation of how to use this strange testing method
+-------------------------------------------------------------
+
+Why use this instead of well-known testing frameworks? Because it fits my workflow. You can of course obliterate this test/ directory and replace it with your method of choice. I mostly build gems that write to files and existing frameworks are overkill for what I'm trying to do. You don't hunt mosquitoes with a rocket launcher... .
+
+
+Within the test/ directory, run:
+
+  bundle install
+
+
+To create a new test, run:
+
+  ruby add_test.rb
+
+There's no need to append "_test" to it. It's done automatically. Your new test will go to units/ directory.
+Open your new test and fill in the required parts. You can have a look at sample_test.rb (delete it when done).
+
+
+To execute the test suite, run:
+
+  ruby test_runner.rb
+
+Use the fixtures/ directory for storing your fixtures.
+Use results/ if you need to write to files.
