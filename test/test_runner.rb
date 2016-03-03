@@ -16,7 +16,7 @@ Dir["units/*_test.rb"].each do |file|
 
   class_name = PadUtils.filename_to_classname(file)
 
-  clazz = Object.const_get(class_name)
+  clazz = PadUtils.filename_to_class(file)
   c = clazz.new(class_name)
   errors = c.run
 
