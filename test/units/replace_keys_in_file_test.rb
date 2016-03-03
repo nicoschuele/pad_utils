@@ -7,7 +7,7 @@ test_name = "ReplaceKeysInFile"
 class ReplaceKeysInFileTest < Test
 
   def prepare
-    # Add test preparation here
+    PadUtils.copy_file("fixtures/sample_file.rb", "results/replaced.rb")
   end
 
   def run_test
@@ -15,7 +15,7 @@ class ReplaceKeysInFileTest < Test
       {key: /REPLACE_ME/, value: "REPLACED"},
       {key: /REPLACE_ALSO/, value: "REPLACED AS WELL"}
     ]
-    PadUtils.replace_keys_in_file("fixtures/sample_file.rb", values)
+    PadUtils.replace_keys_in_file("results/replaced.rb", values)
   end
 
   def cleanup
