@@ -14,7 +14,7 @@ PadUtils.puts_c "Running tests...", :blue
 Dir["units/*_test.rb"].each do |file|
   require_relative file
 
-  class_name = PadUtils.filename_to_class(file)
+  class_name = PadUtils.filename_to_classname(file)
 
   clazz = Object.const_get(class_name)
   c = clazz.new(class_name)

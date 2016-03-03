@@ -4,7 +4,7 @@ require_relative '../template/test'
 # Test name
 test_name = "FilenameToClass"
 
-class FilenameToClassTest < Test
+class FilenameToClassnameTest < Test
 
   def prepare
     # Add test preparation here
@@ -12,7 +12,7 @@ class FilenameToClassTest < Test
 
   def run_test
     file = "fixtures/foo_bar.rb"
-    klass = PadUtils.filename_to_class(file)
+    klass = PadUtils.filename_to_classname(file)
 
     if klass != "FooBar"
       @errors << "Conversion was wrong."
