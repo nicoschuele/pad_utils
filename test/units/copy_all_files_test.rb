@@ -20,7 +20,7 @@ class CopyAllFilesTest < Test
     # You can also add notes to @notes
     #   example: @notes << "Some note"
     @notes << "Execution directory: #{Dir.pwd}"
-    PadUtils.copy_all_files "fixtures/source", "results"
+    PadUtils.copy_all_files "fixtures/source", "results/destination"
   end
 
   def cleanup
