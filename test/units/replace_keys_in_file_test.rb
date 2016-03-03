@@ -13,13 +13,23 @@ class ReplaceKeysInFileTest < Test
   def run_test
     values = [
       {key: /REPLACE_ME/, value: "REPLACED"},
-      {key: /REPLACE_ALSO/, value: "REPLACED AS WELL"}
+      {key: /REPLACE_ALSO/, value: "CHANGED AS WELL"}
     ]
+
     PadUtils.replace_keys_in_file("results/replaced.rb", values)
+
+    replaced_count = PadUtils.get_file_content("results/replaced.rb").scan(/REPLACED/).length
+
+    changed_count = PadUtils.get_file_content("results/replaced.rb").scan(/CHANGED AS WELL/).length
+
+    if changed_count != 2 || replaced_count != 2
+      @errors << "Replaced count is wrong."
+    end
+
   end
 
   def cleanup
-    # Add cleanup code here
+    PadUtils.delete_file("results/replaced.rb")
   end
 
 end

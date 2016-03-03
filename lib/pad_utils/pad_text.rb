@@ -90,6 +90,27 @@ module PadUtils
     PadUtils.log("Error replacing #{old_text} in #{file} with #{new_text}", e)
   end
 
+  # Replaces multiple strings in a file.
+  #
+  # Will log errors using {PadUtils.log PadUtils.log}.
+  #
+  # @param file [String] the file path and name
+  # @param values [Array] the array containing hashes of `key`, `value`
+  # @return [Void] nothing
+  # @example
+  #   values = [
+  #     {key: /REPLACE_ME/, value: "REPLACED"},
+  #     {key: /REPLACE_ALSO/, value: "MODIFIED AS WELL"}
+  #   ]
+  #   PadUtils.replace_keys_in_file("example.txt", values)
+  def self.replace_keys_in_file(file, values)
+    values.each do |value|
+      PadUtils.replace_in_file(file, value[:key], value[:value])
+    end
+  rescue Exception => e
+    PadUtils.log("Error replacing multiple keys in #{file}", e)
+  end
+
   # Gets a value from a Ruby config file.
   #
   # *This method is some kind of UFO but it is heavily used in Padstone.
