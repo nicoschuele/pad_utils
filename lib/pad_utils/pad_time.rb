@@ -50,4 +50,32 @@ module PadUtils
     PadUtils.log("Error in readable_stamp_to_time", e)
   end
 
+  # Returns the interval of time between two Time objects.
+  #
+  # @param start_time [Time] the starting time
+  # @param end_time [Time] the ending time
+  # @param unit [Symbol] the unit to use from `:seconds`, `:minutes`, `:hours`, `:days`
+  # @return [Float] the interval, rounded at 3 digits
+  # @example
+  #   start = Time.now - 30
+  #   finish = Time.now
+  #   PadUtils.interval(start, finish, :minutes)  # => 0.5
+  def self.interval(start_time, end_time, unit = :seconds)
+    result = -1
+    inter = (end_time - start_time)
+
+    if unit == :minutes
+      result = inter / 60.0
+    elsif unit == :hours
+      result = (inter / 60) / 60
+    elsif unit == :days
+      result = ((inter / 60) / 60) / 24
+    else
+      result = inter
+    end
+
+    result.round(3)
+
+  end
+
 end
