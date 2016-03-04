@@ -15,10 +15,19 @@ require_relative "pad_utils/pad_code"
 #   PadUtils.some_method(param)
 module PadUtils
 
-  # Entry point for the executable. Not really useful.
+  # Entry point for the executable.
   def self.main(arg)
+    if arg[0] == '-u'
+      PadUtils.puts_c PadUtils.uuid, :blue
+    else
+      help
+    end
+  end
+
+  # Display version of PadUtils if no switches are passed.
+  def self.help
     puts
-    puts "PadUtils v.#{PadUtils::VERSION}"
+    PadUtils.puts_c "PadUtils v.#{PadUtils::VERSION}", :green
     puts
     puts "Part of the Padstone app builder (http://padstone.io)"
     puts
