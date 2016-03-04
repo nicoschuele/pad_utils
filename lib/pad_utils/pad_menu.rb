@@ -6,9 +6,9 @@ module PadUtils
   #
   # @param question [String] the question to ask
   # @param default [String] the default answer as `"y"` or `"n"` - (*default: `"y"`*)
-  # @return [String] the answer as `"y"` or `"n"`
+  # @return [Boolean] `true` if `yes`, `false` for anything else
   # @example
-  #   PadUtils.yes_no_menu("Is it cold outside?", default: "n")
+  #   PadUtils.yes_no_menu(question: "Is it cold outside?", default: "n")
   def self.yes_no_menu(question: "Question?", default: "y")
     default_answer = default == "y" ? "(Y/n)" : "(y/N)"
     STDOUT.print "#{question} #{default_answer}: "
