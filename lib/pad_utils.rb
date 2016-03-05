@@ -8,6 +8,7 @@ require_relative "pad_utils/pad_json"
 require_relative "pad_utils/pad_color"
 require_relative "pad_utils/pad_code"
 require_relative "pad_utils/pad_security"
+require_relative "pad_utils/pad_http"
 
 # Main namespace for PadUtils.
 #

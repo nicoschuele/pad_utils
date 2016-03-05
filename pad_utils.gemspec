@@ -17,4 +17,5 @@ Gem::Specification.new do |spec|
   spec.executables   << 'padutils'
   spec.require_paths = ["lib"]
   spec.add_dependency 'json', '>= 1.8.3', '< 1.9'
+  spec.add_dependency 'httparty', '>= 0.13.7', '< 0.14'
 end
