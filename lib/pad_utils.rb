@@ -7,6 +7,7 @@ require_relative "pad_utils/pad_menu"
 require_relative "pad_utils/pad_json"
 require_relative "pad_utils/pad_color"
 require_relative "pad_utils/pad_code"
+require_relative "pad_utils/pad_security"
 
 # Main namespace for PadUtils.
 #
