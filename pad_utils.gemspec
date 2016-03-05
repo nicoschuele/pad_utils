@@ -16,4 +16,5 @@ Gem::Specification.new do |spec|
   spec.files         = Dir["{lib}/**/*", "LICENSE.txt", "Rakefile", "README.md"]
   spec.executables   << 'padutils'
   spec.require_paths = ["lib"]
+  spec.add_dependency 'json', '>= 1.8.3', '< 1.9'
 end
