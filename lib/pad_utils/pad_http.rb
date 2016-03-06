@@ -14,16 +14,16 @@ module PadUtils
   #
   # @param url [String] the url to call
   # @param body [Hash] the hash containing the key/value pairs to send
-  # @param header [Hash] the hash containing the header key/value pairs
+  # @param headers [Hash] the hash containing the header key/value pairs
   # @return [Hash] the response as a hash
   # @example
   #   url = "http://example.com/api/movies"
   #   body = {year: 2008, director: "Nolan"}
   #   PadUtils.http_post(url: url, body: body) # => {movie: "The Dark Knight"}
-  def self.http_post(url: "", body: {}, header: {'Content-Type' => 'application/json'})
+  def self.http_post(url: "", body: {}, headers: {'Content-Type' => 'application/json', 'User-Agent' => 'Padstone'})
     reply_hash = {}
     body = PadUtils.hash_to_json(body)
-    reply = HTTParty.post(url, {header: header, body: body})
+    reply = HTTParty.post(url, {headers: headers, body: body})
     reply_hash = PadUtils.json_to_hash reply
     reply_hash
   rescue JSON::ParserError => e
@@ -33,5 +33,9 @@ module PadUtils
   rescue Exception => e
     reply_hash = {error: e.message}
   end
+
+  # def self.http_get(url: "", header: {'Content-Type' => 'application/json'})
+  #
+  # end
 
 end
