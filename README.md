@@ -21,11 +21,6 @@ PadUtils is fully documented at [padutils.padstone.io](http://padutils.padstone.
 [Get in touch](https://twitter.com/nicoschuele) before submitting a pull request, I don't want to waste your time by rejecting it!
 
 
-## Testing
-
-The test suite for PadUtils is currently outside of the gem itself. I may add it if I have time.
-
-
 ## License
 
 Copyright 2016 - Nico Schuele
