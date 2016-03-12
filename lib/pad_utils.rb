@@ -21,6 +21,20 @@ module PadUtils
   def self.main(arg)
     if arg[0] == '-u'
       PadUtils.puts_c PadUtils.uuid, :blue
+    elsif arg[0] == '-e'
+      if arg[1].nil? || arg[2].nil?
+        puts
+        PadUtils.puts_c "padutils -e <word to encrypt> <encryption key>"
+      else
+        PadUtils.puts_c PadUtils.encrypt content: arg[1], key: arg[2]
+      end
+    elsif arg[0] == '-d'
+      if arg[1].nil? || arg[2].nil?
+        puts
+        PadUtils.puts_c "padutils -d <string to decrypt> <encryption key>"
+      else
+        PadUtils.puts_c PadUtils.decrypt content: arg[1], key: arg[2]
+      end
     else
       help
     end
