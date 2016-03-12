@@ -80,10 +80,10 @@ module PadUtils
   #
   # @note Won't override directory content if it already exists.
   #
-  # @param dir_name [String] the directory path and name
+  # @param dir_name [String] the directory path and name (add `/.`)
   # @return [Void] nothing
   # @example
-  #   PadUtils.create_directory("path/to/dir")
+  #   PadUtils.create_directory("path/to/dir/.")
   def self.create_directory(dir_name)
     dirname = File.dirname(dir_name)
     unless File.directory?(dirname)
