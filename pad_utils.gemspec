@@ -6,7 +6,7 @@ require 'pad_utils/version'
 Gem::Specification.new do |spec|
   spec.name          = "pad_utils"
   spec.version       = PadUtils::VERSION
-  spec.required_ruby_version = '>= 2.2'
+  spec.required_ruby_version = '>= 2.2.2'
   spec.authors       = ["Nico Schuele"]
   spec.email         = ["help@padstone.io"]
   spec.summary       = "PadUtils is a simple gem containing common utilities and shortcuts"
