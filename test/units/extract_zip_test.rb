@@ -11,7 +11,7 @@ class ExtractZipTest < Test
   end
 
   def run_test
-    PadUtils.extract_zip("../fixtures/archive.zip", "results/extracted")
+    PadUtils.extract_zip("fixtures/archive.zip", "results/extracted")
 
     if !PadUtils.file_exist?("results/extracted/penguin02.jpg") || !PadUtils.file_exist?("results/extracted/others/panda.jpg")
       @errors << "Seems files were not extracted"
