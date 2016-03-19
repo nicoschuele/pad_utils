@@ -18,4 +18,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.add_dependency 'json', '>= 1.8.3', '< 1.9'
   spec.add_dependency 'httparty', '>= 0.13.7', '< 0.14'
+  spec.add_dependency 'rubyzip', '>= 1.2', '< 1.3'
 end
