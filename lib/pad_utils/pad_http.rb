@@ -82,4 +82,36 @@ module PadUtils
     reply_hash = {error: e.message}
   end
 
+  # Downloads a file API-frienldy.
+  #
+  # @note **Warning:** If the server answers with an error message, no error will
+  #   be raised and the `target` file be created with the content of the error message.
+  #
+  # @param url [String]
+  # @param target [String] the local target file path and name
+  # @param headers [Hash] the hash containing the header key/value pair
+  # @return [String] the target path and name or the error message
+  # @example
+  #   PadUtils.http_get_file("http:/example.com/v1/get_file", "image.jpg") # => "image.jpg"
+  def self.http_get_file(url, target, headers: {'User-Agent' => 'Padstone'})
+    File.open(target, "wb") do |f|
+      f.binmode
+      f.write HTTParty.get(url).parsed_response
+    end
+
+    if File.size(target) < 1
+      PadUtils.delete_file(target)
+      "File not found"
+    else
+      target
+    end
+
+  rescue Errno::ECONNREFUSED => e
+    PadUtils.delete_file(target)
+    "Server unreachable"
+  rescue Exception => e
+    PadUtils.delete_file(target)
+    e.message
+  end
+
 end
