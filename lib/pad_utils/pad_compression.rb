@@ -3,6 +3,13 @@ require 'fileutils'
 
 module PadUtils
 
+  # Extracts a zip file.
+  #
+  # @note If the target path doesn't exist, it will be created. Existing files
+  #   will **not** be overwritten.
+  #
+  # @param filename [String] the path and name of the zip file
+  # @param target_path [String] the target directory where to extract the file
   def self.extract_zip(filename, target_path)
     # Unzip the content
     Zip::File.open(filename) do |zip_file|
