@@ -16,6 +16,17 @@ module PadUtils
     FileUtils.rm(file_path, force: true)
   end
 
+  # Deletes a file recursively.
+  #
+  # @param path [String] the path to search recurively
+  # @param filename [String] the filename to search and delete. `*` wildcard accepted
+  # @return [Void] nothing
+  # @example
+  #   PadUtils.delete_recursive("images/photos", ".DS_Store")
+  def self.delete_recursive(path, filename)
+    Dir.glob("#{path}/**/#{filename}").each { |f| File.delete(f) }
+  end
+
   # Checks if a file exists.
   #
   # @param file_path [String] the file path and name
