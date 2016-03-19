@@ -14,6 +14,7 @@ module PadUtils
     end
     # Get rid of these filthy OS X files
     PadUtils.delete_directory "#{target_path}/__MACOSX" if PadUtils.file_exist?("#{target_path}/__MACOSX")
+    PadUtils.delete_recursive("#{target_path}", ".DS_Store")
   end
 
 end
