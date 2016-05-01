@@ -2,7 +2,7 @@
 
 PadUtils is a simple gem containing common utilities and shortcuts. It is used in the [Padstone](http://padstone.io) app builder but can be embedded in any other Ruby project.
 
-It provides methods to work with text, JSON, hashes, time, to build cli menus and more.
+It provides methods to work with text, JSON, RSA, hashes, time, to build cli menus and more.
 
 ## Installation
 
