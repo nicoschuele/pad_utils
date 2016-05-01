@@ -9,9 +9,13 @@ errors_list = []
 
 puts
 
+# Argument
+area = ARGV[0]
+test_files = area.nil? ? "*_test.rb" : "#{area}*"
+
 PadUtils.puts_c "Running tests...", :blue
 
-Dir["units/*_test.rb"].each do |file|
+Dir["units/#{test_files}"].each do |file|
   require_relative file
 
   class_name = PadUtils.filename_to_classname(file)
