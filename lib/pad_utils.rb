@@ -36,8 +36,25 @@ module PadUtils
       else
         PadUtils.puts_c PadUtils.decrypt content: arg[1], key: arg[2]
       end
+    elsif arg[0] == '--rsa'
+      if arg[1].nil? || arg[2].nil?
+        puts
+        PadUtils.puts_c "padutils --rsa <private | public> <path/to/key.pem>", :blue
+      else
+        generate_rsa arg[1], arg[2]
+      end
     else
       help
+    end
+  end
+
+  def self.generate_rsa(type, path)
+    if type == "private"
+      PadUtils.generate_rsa_private_key path: path
+    end
+
+    if type == "public"
+      PadUtils.generate_rsa_public_key private_key: path, path: "public.pem"
     end
   end
 
