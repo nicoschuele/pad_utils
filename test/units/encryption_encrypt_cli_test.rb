@@ -2,9 +2,9 @@ require 'pad_utils'
 require_relative '../template/test'
 
 # Test name
-test_name = "EncryptCli"
+test_name = "EncryptionEncryptCli"
 
-class EncryptCliTest < Test
+class EncryptionEncryptCliTest < Test
 
   def prepare
     # Add test preparation here
@@ -12,7 +12,7 @@ class EncryptCliTest < Test
 
   def run_test
     PadUtils.puts_c "Should display encrypted hello:", :blue
-    PadUtils.main ["-e", "hello", "dev_key"]    
+    PadUtils.main ["-e", "hello", "dev_key"]
   end
 
   def cleanup

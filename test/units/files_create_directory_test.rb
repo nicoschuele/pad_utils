@@ -2,9 +2,9 @@ require 'pad_utils'
 require_relative '../template/test'
 
 # Test name
-test_name = "CreateDirectory"
+test_name = "FilesCreateDirectory"
 
-class CreateDirectoryTest < Test
+class FilesCreateDirectoryTest < Test
 
   def prepare
     # Add test preparation here

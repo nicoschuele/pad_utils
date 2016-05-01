@@ -2,9 +2,9 @@ require 'pad_utils'
 require_relative '../template/test'
 
 # Test name
-test_name = "CopyAllFiles"
+test_name = "FilesCopyAllFiles"
 
-class CopyAllFilesTest < Test
+class FilesCopyAllFilesTest < Test
 
   def prepare
     # Add test preparation here

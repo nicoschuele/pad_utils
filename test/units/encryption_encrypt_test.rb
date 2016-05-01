@@ -2,9 +2,9 @@ require 'pad_utils'
 require_relative '../template/test'
 
 # Test name
-test_name = "Encrypt"
+test_name = "EncryptionEncrypt"
 
-class EncryptTest < Test
+class EncryptionEncryptTest < Test
 
   def prepare
     # Add test preparation here

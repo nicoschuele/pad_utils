@@ -2,9 +2,9 @@ require 'pad_utils'
 require_relative '../template/test'
 
 # Test name
-test_name = "DownloadFile"
+test_name = "HttpDownloadFile"
 
-class DownloadFileTest < Test
+class HttpDownloadFileTest < Test
 
   def prepare
     @url = "http://localhost:3000/services/v1/test/download"

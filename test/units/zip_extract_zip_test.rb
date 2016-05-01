@@ -2,9 +2,9 @@ require 'pad_utils'
 require_relative '../template/test'
 
 # Test name
-test_name = "ExtractZip"
+test_name = "ZipExtractZip"
 
-class ExtractZipTest < Test
+class ZipExtractZipTest < Test
 
   def prepare
     # Add test preparation here

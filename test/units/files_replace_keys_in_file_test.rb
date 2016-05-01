@@ -2,9 +2,9 @@ require 'pad_utils'
 require_relative '../template/test'
 
 # Test name
-test_name = "ReplaceKeysInFile"
+test_name = "FilesReplaceKeysInFile"
 
-class ReplaceKeysInFileTest < Test
+class FilesReplaceKeysInFileTest < Test
 
   def prepare
     PadUtils.copy_file("fixtures/sample_file.rb", "results/replaced.rb")

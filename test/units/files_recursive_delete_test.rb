@@ -2,9 +2,9 @@ require 'pad_utils'
 require_relative '../template/test'
 
 # Test name
-test_name = "RecursiveDelete"
+test_name = "FilesRecursiveDelete"
 
-class RecursiveDeleteTest < Test
+class FilesRecursiveDeleteTest < Test
 
   def prepare
     PadUtils.copy_all_files("fixtures/source", "results/rec_delete")
