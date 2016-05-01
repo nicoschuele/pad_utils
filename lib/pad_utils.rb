@@ -10,7 +10,6 @@ require_relative "pad_utils/pad_code"
 require_relative "pad_utils/pad_security"
 require_relative "pad_utils/pad_http"
 require_relative "pad_utils/pad_compression"
-require_relative "pad_utils/padstone/connection"
 
 # Main namespace for PadUtils.
 #
